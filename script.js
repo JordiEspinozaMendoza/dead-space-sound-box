@@ -50,33 +50,45 @@ const playTwinkleSound = () => {
   twinkleSound.play();
 };
 
-window.addEventListener("gamepadconnected", (e) => {
-  function loop() {
-    const gamepad = navigator.getGamepads()[e.gamepad.index];
-    if (gamepad) {
-      gamepad.buttons.forEach((btn, i) => {
-        if (btn.pressed) {
-          console.log(i);
+window.addEventListener("gamepadconnected", function(e) {
+  const gamepad = e.gamepad;
+  console.log(`Gamepad connected at index ${gamepad.index}: ${gamepad.id}.
+              ${gamepad.buttons.length} buttons, ${gamepad.axes.length} axes.`);
+});
 
-          switch (i) {
-            case 7: // ZR Button
-              playPlasmaCutterSound();
-              break;
-            case 8: // R Button
-              const randomIndex = Math.floor(
-                Math.random() * necromorphSounds.length
-              );
-              playNecromorphSound(randomIndex);
-              break;
-            case 3: // Y Button
-              playTwinkleSound();
-              break;
-          }
+window.addEventListener("gamepaddisconnected", (e) => {
+  console.log("Gamepad disconnected:", e.gamepad.id);
+});
+
+function loop() {
+  const gamepads = navigator.getGamepads();
+
+  for (const gamepad of gamepads) {
+    if (!gamepad) continue;
+
+    gamepad.buttons.forEach((btn, i) => {
+      if (btn.pressed) {
+        console.log(i);
+
+        switch (i) {
+          case 7: // ZR Button
+            playPlasmaCutterSound();
+            break;
+          case 8: // R Button
+            const randomIndex = Math.floor(
+              Math.random() * necromorphSounds.length
+            );
+            playNecromorphSound(randomIndex);
+            break;
+          case 3: // Y Button
+            playTwinkleSound();
+            break;
         }
-      });
-    }
-    requestAnimationFrame(loop);
+      }
+    });
   }
 
-  loop();
-});
+  requestAnimationFrame(loop);
+}
+
+loop();
