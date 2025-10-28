@@ -8,7 +8,11 @@
   </head>
   <body>
     <h1>Dead Space Sound Box</h1>
-
+    <br />
+    <span>Use the buttons below or your gamepad to play sounds!</span>
+    <br />
+    <span id="gamepad-status">No gamepad connected</span>
+    <br />
     <iframe
       width="560"
       height="315"
@@ -19,7 +23,7 @@
       allowfullscreen
     ></iframe>
 
-    <br>
+    <br />
     <audio id="plasma-cutter-sfx" src="sounds/plasma-cutter-sfx.mp3"></audio>
     <audio class="necromorph-sfx" src="sounds/necromorph-sfx-1.mp3"></audio>
     <audio class="necromorph-sfx" src="sounds/necromorph-sfx-2.mp3"></audio>
@@ -34,11 +38,16 @@
       src="sounds/twinkle-twinkle-little-star.mp3"
     ></audio>
 
+    <audio id="quarantine-alarm-sfx" src="sounds/quarantine-alarm.mp3"></audio>
+    <audio id="make-us-whole-again-sfx" src="sounds/make-us-whole-again.mp3"></audio>
+
     <button id="plasma-cutter-sfx-button">Play Plasma Cutter SFX</button>
     <button id="necromorph-sfx-button">Play Random Necromorph SFX</button>
     <button id="twinkle-sfx-button">
       Play Twinkle Twinkle Little Star SFX
     </button>
+    <button id="quarantine-alarm-button">Play Quarantine Alarm SFX</button>
+    <button id="make-us-whole-again-button">Play Make Us Whole Again SFX</button>
 
     <script src="script.js"></script>
   </body>
